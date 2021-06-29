@@ -31,8 +31,24 @@ function App() {
   //숙제 ! update!
   const updateOne = () => {
     //id:1번 name:을 Tomato로 바꾸기
-    let newFoods = [foods.map((food) => (foods.id === 1 ? 2 : ""))];
-    setFoods(newFoods);
+    
+    // let updateFoods = {...foods[0], name: "Tomato" };
+    // console.log(updateFoods); => 나오긴 하는데 상태를 업데이트 해야함
+    
+    let updateFoods = foods.map((food)=>{
+      if(food.id === 1){
+        return {...foods[0], name: "Tomato" };
+      }else{
+        return food;
+      }
+    })
+    setFoods(updateFoods);
+
+    // 1 Tomato가 하나 추가됨
+    // setFoods([
+    //   ...foods,
+    //   {...foods[0], name: "Tomato"}
+    // ])
   };
 
   return (
