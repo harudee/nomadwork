@@ -1,46 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Movie from "./Movie";
+import { Route } from "react-router-dom";
+import DetailPage from "./pages/DetailPage";
+import MoviesPage from "./pages/MoviesPage";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  //is 붙으면 테스트 해봐야함
-  const [movies, setMovies] = useState([]);
-
-  const getMovies = async () => {
-    // axios: pending이 끝나면 callback되는 함수
-    let movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
-    console.log("movie : " + movies); //
-    setMovies(movies.data.data.movies);
-    setIsLoading(false);
-  };
-
-  // useEffect(() => {
-  //   //setTimeout: 첫번째 인자로 함수, 두번째 인자로 밀리초가 들어감
-  //   setTimeout(() => {
-  //     setIsLoading(!false);
-  //   }, 2000);
-  // }, []);
-
-  useEffect(() => {
-    //얘를 비동기로 만들면 안돼
-    getMovies();
-    //1
-    //2
-    //3 동작 여러개 있을 수 있으니까
-  }, []);
-
   return (
     <div>
-      {/* isLoading 나오는지 확인test
-      <h3>{isLoading ? "true" : "false"}</h3>
-       상태 바꾸기 되는지 확인test */}
-      {/* <button onClick={() => { setIsLoading(!isLoading);}}>
-        로딩값 변경
-      </button> */}
-      {isLoading
-        ? "Loading..."
-        : movies.map((movie) => <Movie key={movie.id} movie={movie} />)}
+      <Route path="/" exact={true} component={MoviesPage} />
+      <Route path="/movie/:id" exact={true} component={DetailPage} />
     </div>
   );
 }

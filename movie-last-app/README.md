@@ -2,7 +2,9 @@
 
 ### lib
 
--npm install axios
+- npm install axios
+- yarn add styled-components
+- npm install react-router-dom
 
 ### movie api data
 
